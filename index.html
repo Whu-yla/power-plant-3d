@@ -20,7 +20,8 @@
     <div class="subtitle">数据源：总平面规划图（生成图 CAD 量测坐标，1 图纸单位 = 1 m，Z-up 高度模式）</div>
   </div>
   <div class="spacer"></div>
-  <div class="badge">71 构筑物 · 140 道路 · 192 绿化</div>
+  <!-- 顶部统计由 main.js 依 plant-data.js 实时填充，避免手改数字与实际数据不一致 -->
+  <div class="badge" id="hdrStats">—</div>
 </header>
 
 <!-- 左侧：构件清单（按 cat 分组，可勾选显隐） -->

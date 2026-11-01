@@ -51,6 +51,7 @@
   var elLoadingText = document.getElementById('loadingText');
   var elPanelTree = document.getElementById('tree');
   var elStatCount = document.getElementById('statCount');
+  var elHdrStats = document.getElementById('hdrStats');
   var elInfo = document.getElementById('infoCard');
   var elInfoTitle = document.getElementById('infoTitle');
   var elInfoMeta = document.getElementById('infoMeta');
@@ -877,6 +878,12 @@
 
     if (elStatCount) {
       elStatCount.textContent = DATA.structures.length + ' 个构件 / ' + CATS.length + ' 类';
+    }
+    // 顶部徽标同样取自数据，随补录构件自动更新
+    if (elHdrStats) {
+      elHdrStats.textContent = DATA.structures.length + ' 构筑物 · ' +
+        (DATA.roads ? DATA.roads.length : 0) + ' 道路 · ' +
+        (DATA.trees ? DATA.trees.length : 0) + ' 绿化';
     }
     updateGroupCheckboxes();
   }
