@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="某电厂2×600MW扩建工程 · 三维总平面（数据源：总平面规划图）">
+<title>某电厂2×600MW扩建工程 · 三维总平面</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 三维画布：Z-up，所有几何由 builders.js 生成、main.js 装配 -->
+<canvas id="scene"></canvas>
+
+<!-- 顶部标题栏 -->
+<header id="topbar">
+  <div class="mark">电</div>
+  <div class="titles">
+    <div class="title">某电厂2×600MW扩建工程 · 三维总平面</div>
+    <div class="subtitle">数据源：总平面规划图（生成图 CAD 量测坐标，1 图纸单位 = 1 m，Z-up 高度模式）</div>
+  </div>
+  <div class="spacer"></div>
+  <div class="badge">71 构筑物 · 140 道路 · 192 绿化</div>
+</header>
+
+<!-- 左侧：构件清单（按 cat 分组，可勾选显隐） -->
+<aside id="panel">
+  <div class="panel-head">
+    <span>构件清单</span>
+    <span class="stat" id="statCount">—</span>
+  </div>
+  <div class="panel-actions">
+    <button type="button" id="btnShowAll">全部显示</button>
+    <button type="button" id="btnHideAll">全部隐藏</button>
+  </div>
+  <div id="tree"></div>
+  <div class="panel-foot">
+    勾选 = 显隐；点名称 = 聚焦视角<br>
+    场景内左键旋转 / 滚轮缩放 / 右键平移 / 双击构件聚焦
+  </div>
+</aside>
+
+<!-- 右上：工具栏 -->
+<div id="toolbar">
+  <button type="button" data-act="wireframe" aria-pressed="false" title="切换全部材质的线框显示">线框</button>
+  <button type="button" data-act="lights" aria-pressed="false" title="开关方向光（日光）">光照</button>
+  <button type="button" data-act="labels" aria-pressed="true" title="显示/隐藏构件编号标注">标注</button>
+  <button type="button" data-act="site" aria-pressed="false" title="显示/隐藏场地（道路 + 树 + 围墙）">场地</button>
+  <button type="button" data-act="grid" aria-pressed="true" title="显示/隐藏 100m 台账网格">网格</button>
+  <button type="button" data-act="fog" aria-pressed="false" title="开关雾效">雾</button>
+  <button type="button" data-act="reset" title="复位到初始视角">复位视角</button>
+</div>
+
+<!-- 右上：构件信息卡片（点击拾取后弹出） -->
+<section id="infoCard" class="hidden" aria-live="polite">
+  <div class="info-head">
+    <div>
+      <div id="infoTitle">—</div>
+      <div id="infoMeta">—</div>
+    </div>
+    <button type="button" id="infoClose" title="关闭">×</button>
+  </div>
+  <div id="infoBody"></div>
+  <div class="info-foot">数据来源与备注均为图纸原始记录；双击构件可聚焦视角。</div>
+</section>
+
+<!-- 右下：鼠标所指世界坐标 -->
+<div id="hud">—</div>
+
+<!-- 加载遮罩 -->
+<div id="loading">
+  <div class="spin"></div>
+  <div class="brandline">某电厂2×600MW扩建工程</div>
+  <div id="loadingText">正在生成三维总平面…</div>
+</div>
+
+<!-- 初始化失败提示（默认隐藏） -->
+<div id="fatal" class="hidden"></div>
+
+<!-- 经典脚本引入顺序（禁止 ES module；无任何外网 CDN 依赖） -->
+<script src="vendor/three.min.js"></script>
+<script src="vendor/OrbitControls.js"></script>
+<script src="plant-data.js"></script>
+<script src="builders.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

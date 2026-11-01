@@ -1,0 +1,11 @@
+# 依赖与临时产物
+node_modules/
+out/
+*.log
+_preview.html
+.dsh-tmp/
+
+# 操作系统
+Thumbs.db
+Desktop.ini
+.DS_Store
